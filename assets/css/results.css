@@ -1,0 +1,363 @@
+/* Файл: assets/css/results.css */
+/* Стили страниц результатов и диаграмм */
+
+/* ── Страница результатов ──────────────────────────────────── */
+.results-page {
+  padding-top: 96px;
+  padding-bottom: 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.results-container {
+  max-width: 900px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Hero результата ────────────────────────────────────────── */
+.result-hero {
+  padding: clamp(2rem, 5vw, 3rem);
+  text-align: center;
+  background: var(--grad-card);
+}
+
+.result-complete-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(16,185,129,0.15);
+  border: 1px solid rgba(16,185,129,0.3);
+  color: #34d399;
+  font: 500 0.8rem var(--font-body);
+  margin-bottom: 1.5rem;
+}
+
+.result-type-label {
+  font: 800 clamp(3rem, 8vw, 6rem)/1 var(--font-display);
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.result-type-name {
+  font: 600 clamp(1.25rem, 3vw, 1.75rem)/1.2 var(--font-display);
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.result-type-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* ── Сетка карточек результата ──────────────────────────────── */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1.5rem;
+}
+
+.result-card {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* ── MBTI-шкалы ─────────────────────────────────────────────── */
+.mbti-scale {
+  margin-bottom: 1.25rem;
+}
+
+.mbti-scale-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.mbti-scale-label {
+  font: 500 0.875rem var(--font-body);
+  color: var(--text-secondary);
+}
+
+.mbti-scale-value {
+  font: 700 0.875rem var(--font-display);
+  color: var(--text-accent);
+}
+
+.mbti-scale-bar {
+  position: relative;
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.mbti-scale-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+/* ── Диаграмма (canvas) ─────────────────────────────────────── */
+.chart-container {
+  position: relative;
+  width: 100%;
+  padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+/* ── Описание результата ────────────────────────────────────── */
+.result-description {
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.result-description h3 {
+  font: 600 1.1rem var(--font-display);
+  color: var(--text-accent);
+  margin-bottom: 1rem;
+}
+
+.result-description p {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 0.75rem;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--text-accent);
+  font: 500 0.9rem var(--font-body);
+  cursor: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.5rem;
+  transition: gap var(--transition-fast);
+}
+
+.read-more-btn:hover { gap: 0.625rem; }
+
+/* ── Сильные стороны / Зоны роста ──────────────────────────── */
+.strengths-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.strengths-card,
+.growth-card {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.strengths-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font: 600 1rem var(--font-display);
+  margin-bottom: 1rem;
+}
+
+.strengths-list,
+.growth-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.strength-item,
+.growth-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font: 400 0.9rem var(--font-body);
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.strength-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  flex-shrink: 0;
+  margin-top: 0.45rem;
+}
+
+.growth-arrow {
+  color: var(--accent-amber);
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+}
+
+/* ── Карьера ────────────────────────────────────────────────── */
+.career-card {
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.career-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.career-tag {
+  padding: 0.375rem 0.875rem;
+  border-radius: var(--radius-full);
+  background: rgba(139,92,246,0.1);
+  border: 1px solid rgba(139,92,246,0.2);
+  color: var(--text-secondary);
+  font: 400 0.85rem var(--font-body);
+  transition: all var(--transition-fast);
+}
+
+.career-tag:hover {
+  background: rgba(139,92,246,0.2);
+  color: var(--text-accent);
+}
+
+/* ── Блок промпта ────────────────────────────────────────────── */
+.prompt-section {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.prompt-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.prompt-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.prompt-header h3 {
+  font: 600 1.2rem var(--font-display);
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.prompt-text {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  font: 400 0.85rem/1.7 'DM Mono', monospace;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.prompt-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.prompt-hint {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: var(--radius-md);
+  font: 400 0.85rem var(--font-body);
+  color: var(--text-secondary);
+}
+
+/* ── Export Bar ─────────────────────────────────────────────── */
+.export-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.export-bar .primary-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.export-bar .secondary-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  font: 500 0.875rem var(--font-body);
+  cursor: none;
+  transition: all var(--transition-base);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-export:hover {
+  border-color: rgba(139,92,246,0.5);
+  background: rgba(139,92,246,0.08);
+  transform: translateY(-2px);
+  color: var(--text-primary);
+}
+
+.btn-export-pdf:hover { border-color: rgba(239,68,68,0.5); background: rgba(239,68,68,0.08); color: #f87171; }
+.btn-export-share:hover { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.08); color: #60a5fa; }
+.btn-export-copy.copied { border-color: rgba(16,185,129,0.5); background: rgba(16,185,129,0.08); color: #34d399; }
+
+/* ── Shared-страница ─────────────────────────────────────────── */
+.shared-banner {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(59,130,246,0.08);
+  border: 1px solid rgba(59,130,246,0.2);
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  font: 400 0.9rem var(--font-body);
+  color: var(--text-secondary);
+}
+
+.shared-cta {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+  .results-grid { grid-template-columns: 1fr; }
+  .strengths-grid { grid-template-columns: 1fr; }
+  .export-bar { flex-direction: column; }
+  .export-bar .primary-actions,
+  .export-bar .secondary-actions { width: 100%; flex-wrap: wrap; }
+  .btn-export { flex: 1; justify-content: center; }
+}

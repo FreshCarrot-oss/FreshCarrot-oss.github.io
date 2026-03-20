@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>PsychoTest</title>
+  <script>
+    // Редирект на index.html с сохранением пути для GitHub Pages SPA
+    var path = window.location.pathname.slice(1);
+    window.location.replace(
+      window.location.origin + '/' +
+      window.location.pathname.split('/')[1] +
+      '/?p=' + encodeURIComponent(path) +
+      (window.location.search ? '&q=' + encodeURIComponent(window.location.search.slice(1)) : '') +
+      window.location.hash
+    );
+  </script>
+</head>
+<body></body>
+</html>

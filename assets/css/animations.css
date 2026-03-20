@@ -1,0 +1,279 @@
+/* Файл: assets/css/animations.css */
+/* Все @keyframes и animation-классы проекта */
+
+/* ── Gradient mesh фон ─────────────────────────────────────── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-animated {
+  background: var(--grad-hero);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* ── Плавающие орбы ────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -30px) scale(1.05); }
+  66%       { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, #8b5cf6, transparent 70%);
+  top: -100px; left: -100px;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, #3b82f6, transparent 70%);
+  bottom: -100px; right: -100px;
+  animation-delay: -4s;
+}
+
+.orb-3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, #06b6d4, transparent 70%);
+  top: 50%; left: 50%;
+  animation-delay: -2s;
+}
+
+/* ── Фоновая сетка ─────────────────────────────────────────── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(139,92,246,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── tsParticles контейнер ─────────────────────────────────── */
+#particles-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Свечение кнопки (pulse) ───────────────────────────────── */
+@keyframes buttonGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139,92,246,0.3); }
+  50%       { box-shadow: 0 0 40px rgba(139,92,246,0.6), 0 0 60px rgba(99,102,241,0.2); }
+}
+
+.btn-primary.glow {
+  animation: buttonGlow 2s ease-in-out infinite;
+}
+
+/* ── Progress shimmer ─────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { transform: translateX(-60px); }
+  100% { transform: translateX(60px); }
+}
+
+/* ── Ripple ──────────────────────────────────────────────── */
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* ── Toast-анимация ───────────────────────────────────────── */
+@keyframes toastIn {
+  from { transform: translateX(100%) scale(0.8); opacity: 0; }
+  to   { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes toastOut {
+  from { transform: translateX(0) scale(1); opacity: 1; }
+  to   { transform: translateX(100%) scale(0.8); opacity: 0; }
+}
+
+/* ── Shake (ошибка в форме) ───────────────────────────────── */
+@keyframes shake {
+  10%, 90% { transform: translateX(-2px); }
+  20%, 80% { transform: translateX(4px); }
+  30%, 50%, 70% { transform: translateX(-6px); }
+  40%, 60% { transform: translateX(6px); }
+}
+
+.shake {
+  animation: shake 0.4s cubic-bezier(.36,.07,.19,.97);
+}
+
+/* ── Пульсация логотипа ───────────────────────────────────── */
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(139,92,246,0.5)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(139,92,246,0.9)); }
+}
+
+.logo-icon {
+  display: inline-block;
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+/* ── Вращение brain SVG (Hero) ────────────────────────────── */
+@keyframes brainRotate {
+  0%   { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.hero-brain {
+  animation: brainRotate 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+/* ── Skeleton-лоадер ──────────────────────────────────────── */
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.8; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Fade-in для страниц ──────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ── Spinner ──────────────────────────────────────────────── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 20px; height: 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+/* ── Загрузочный экран ──────────────────────────────────────── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loader-spinner {
+  width: 48px; height: 48px;
+  border: 3px solid rgba(139,92,246,0.2);
+  border-top-color: var(--accent-violet);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.loader-text {
+  color: var(--text-secondary);
+  font: 500 0.9rem var(--font-body);
+}
+
+/* ── Cursor ───────────────────────────────────────────────── */
+.cursor-dot {
+  position: fixed; top: 0; left: 0;
+  width: 8px; height: 8px;
+  background: var(--accent-violet);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  will-change: transform;
+}
+
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(139,92,246,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  will-change: transform;
+}
+
+.cursor-dot.hovered  { width: 12px; height: 12px; background: var(--accent-cyan); }
+.cursor-ring.hovered { width: 56px; height: 56px; border-color: rgba(6,182,212,0.6); }
+
+/* Мобильные — скрываем кастомный курсор */
+@media (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+  body { cursor: auto; }
+  button { cursor: pointer; }
+}
+
+/* ── Счётчики (hero stats) ────────────────────────────────── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.count-up { animation: countUp 0.5s ease forwards; }
+
+/* ── Линия прогресса секции "Как работает" ─────────────────── */
+@keyframes lineGrow {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+.step-line-fill {
+  animation: lineGrow 1.2s ease forwards;
+}
