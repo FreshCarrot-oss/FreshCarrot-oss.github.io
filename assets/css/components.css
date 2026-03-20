@@ -558,3 +558,36 @@
   }
   .tab-btn { flex: 0 0 calc(50% - 0.125rem); }
 }
+
+/* ── Кнопки вкладок админки ──────────────────────────────────── */
+.admin-tab-btn:hover {
+  color: var(--text-accent) !important;
+  border-color: rgba(139,92,246,0.3) !important;
+}
+
+@media (max-width: 600px) {
+  .admin-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+  }
+  .admin-tab-btn {
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+}
+
+/* ── Skeleton loader ─────────────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s infinite;
+}
+
+@keyframes skeletonShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

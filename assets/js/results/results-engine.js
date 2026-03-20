@@ -48,7 +48,7 @@ export function renderResultPage(testId, result) {
 
         <!-- Hero результата -->
         <div class="result-hero glass-card">
-          <div class="result-complete-badge">✓ Тест завершён</div>
+          <div class="result-complete-badge"> Тест завершён</div>
           ${heroContent}
         </div>
 
@@ -110,7 +110,7 @@ function buildHeroContent(testId, result) {
         <div class="result-type-tags">
           <span class="badge badge-cyan">E = ${result.E}/24</span>
           <span class="badge badge-violet">N = ${result.N}/24</span>
-          ${result.valid ? '<span class="badge badge-green">✓ Достоверно</span>' : '<span class="badge badge-amber">⚠ L > 4</span>'}
+          ${result.valid ? '<span class="badge badge-green"> Достоверно</span>' : '<span class="badge badge-amber">⚠ L > 4</span>'}
         </div>
       `;
     case 'pdo':
@@ -268,7 +268,7 @@ function buildChartSection(testId, result) {
         <div style="margin-top:1rem;padding:0.75rem;border-radius:var(--radius-md);background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);">
           <span style="font:600 1rem var(--font-display);color:var(--text-accent);">${result.temperament}</span>
           <span style="font:400 0.8rem var(--font-body);color:var(--text-muted);display:block;margin-top:0.2rem;">
-            ${result.valid ? '✓ Результат достоверен' : '⚠ L > 4 — возможна недостоверность'}
+            ${result.valid ? ' Результат достоверен' : '⚠ L > 4 — возможна недостоверность'}
           </span>
         </div>
       </div>
@@ -440,8 +440,8 @@ export function renderExportBar(testId) {
       </div>
       <div class="secondary-actions">
         <button class="btn-export btn-export-pdf"   onclick="window.__downloadPDF('${testId}')"  title="Скачать PDF">📄 PDF</button>
-        <button class="btn-export btn-export-share" onclick="window.__shareResult('${testId}')"  title="Поделиться">🔗 Поделиться</button>
-        <button class="btn-export btn-export-copy"  id="copyResultBtn" onclick="window.__copyResult('${testId}')" title="Скопировать текст">📋 Копировать</button>
+        <button class="btn-export btn-export-share" onclick="window.__shareResult('${testId}')"  title="Поделиться"> Поделиться</button>
+        <button class="btn-export btn-export-copy"  id="copyResultBtn" onclick="window.__copyResult('${testId}')" title="Скопировать текст"> Копировать</button>
       </div>
     </div>
     <div style="text-align:center;margin-top:1rem;">

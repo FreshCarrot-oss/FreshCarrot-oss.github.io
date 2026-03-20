@@ -238,7 +238,7 @@ export async function handleShareResult(testId, result) {
   }
 
   await copyToClipboard(url);
-  showToast('Ссылка скопирована в буфер обмена! 🔗', 'success');
+  showToast('Ссылка скопирована в буфер обмена! ', 'success');
 }
 
 // ── Генерировать текст результата (Markdown) ──────────────────
@@ -283,12 +283,12 @@ export function generateResultText(testId, result) {
 export async function handleCopyResult(testId, result) {
   const text = generateResultText(testId, result);
   await copyToClipboard(text);
-  showToast('Результат скопирован! 📋', 'success');
+  showToast('Результат скопирован! ', 'success');
 
   const btn = document.getElementById('copyResultBtn');
   if (btn) {
     const orig = btn.innerHTML;
-    btn.innerHTML = '✅ Скопировано';
+    btn.innerHTML = ' Скопировано';
     btn.classList.add('copied');
     setTimeout(() => {
       btn.innerHTML = orig;

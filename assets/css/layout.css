@@ -265,3 +265,25 @@
     gap: 1.5rem;
   }
 }
+
+/* ── Доп. мобильная адаптация ──────────────────────────────── */
+@media (max-width: 768px) {
+  .navbar-inner {
+    padding-inline: 1rem;
+  }
+  .cabinet-container {
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-auth {
+    gap: 0.375rem;
+  }
+  .nav-auth .btn-ghost {
+    display: none;
+  }
+  .footer-inner {
+    gap: 1.5rem;
+  }
+}

@@ -1,5 +1,4 @@
-/* Файл: assets/pages/cabinet.js */
-/* Личный кабинет: 4 вкладки — тесты, профиль, AI-портрет, настройки */
+/* assets/pages/cabinet.js — Личный кабинет (без эмодзи) */
 
 import { loadAllResults, loadPromptHistory, deleteAllResults, exportUserData } from '../js/db.js';
 import { renderCombinedProfile } from '../js/results/combined-profile.js';
@@ -9,13 +8,13 @@ import { showToast, showConfirm, formatDate, formatDateShort } from '../js/ui.js
 import { router } from '../js/router.js';
 
 const ALL_TESTS = [
-  { id:'mbti',     name:'MBTI',         icon:'🧩' },
-  { id:'bigfive',  name:'Big Five',     icon:'🌊' },
-  { id:'eysenck',  name:'Айзенк',       icon:'🔥' },
-  { id:'pdo',      name:'ПДО Личко',    icon:'🎭' },
-  { id:'leonhard', name:'Леонгард',     icon:'🌗' },
-  { id:'cattell',  name:'Кеттел 16PF', icon:'🔬' },
-  { id:'iq',       name:'IQ-тест',      icon:'🧠' },
+  { id:'mbti',     name:'MBTI',         color:'#6366f1' },
+  { id:'bigfive',  name:'Big Five',     color:'#3b82f6' },
+  { id:'eysenck',  name:'Айзенк',       color:'#06b6d4' },
+  { id:'pdo',      name:'ПДО Личко',    color:'#8b5cf6' },
+  { id:'leonhard', name:'Леонгард',     color:'#ec4899' },
+  { id:'cattell',  name:'Кеттел 16PF', color:'#10b981' },
+  { id:'iq',       name:'IQ-тест',      color:'#f59e0b' },
 ];
 
 let activeTab = 'tests';
@@ -41,8 +40,8 @@ export async function renderCabinetPage(initialTab = 'tests') {
             <div class="cabinet-user-name">${user.displayName || 'Пользователь'}</div>
             <div class="cabinet-user-email">${user.email}</div>
             <div class="cabinet-stats">
-              <span class="cabinet-stat"><span class="cabinet-stat-icon">📊</span> Загрузка...</span>
-              <span class="cabinet-stat"><span class="cabinet-stat-icon">📅</span> В системе с ${memberSince}</span>
+              <span class="cabinet-stat">Загрузка...</span>
+              <span class="cabinet-stat">В системе с ${memberSince}</span>
             </div>
           </div>
           <button class="btn-danger btn-sm" style="margin-left:auto;align-self:flex-start;" onclick="window.__logoutCab()">Выйти</button>
@@ -50,10 +49,10 @@ export async function renderCabinetPage(initialTab = 'tests') {
 
         <div class="cabinet-tabs" id="cabinetTabs">
           ${[
-            { id:'tests',    label:'📋 Мои тесты'      },
-            { id:'profile',  label:'📊 Сводный профиль' },
-            { id:'ai',       label:'🤖 AI-портрет'     },
-            { id:'settings', label:'⚙️ Настройки'      },
+            { id:'tests',    label:'Мои тесты'       },
+            { id:'profile',  label:'Сводный профиль'  },
+            { id:'ai',       label:'AI-портрет'       },
+            { id:'settings', label:'Настройки'        },
           ].map(t => `
             <button class="cabinet-tab ${t.id === activeTab ? 'active' : ''}"
               data-tab="${t.id}" onclick="window.__switchCabTab('${t.id}')">${t.label}</button>
@@ -86,16 +85,18 @@ async function switchTab(tabId) {
   content.innerHTML = `<div style="text-align:center;padding:3rem;"><div class="spinner" style="width:32px;height:32px;margin-inline:auto;"></div></div>`;
 
   const user = window.__currentUser;
-  if (tabId === 'tests')    await renderTestsTab(content, user);
+  if (tabId === 'tests')         await renderTestsTab(content, user);
   else if (tabId === 'profile')  await renderProfileTab(content, user);
   else if (tabId === 'ai')       renderAITab(content);
   else if (tabId === 'settings') renderSettingsTab(content, user);
 }
 
+/* ── Вкладка: Мои тесты ─────────────────────────────────────── */
 async function renderTestsTab(content, user) {
   let results = {};
   try { results = await loadAllResults(user.uid); } catch {}
 
+  // Фолбэк: localStorage
   ALL_TESTS.forEach(t => {
     if (!results[t.id]) {
       const raw = localStorage.getItem(`result_${t.id}`);
@@ -109,16 +110,18 @@ async function renderTestsTab(content, user) {
   content.innerHTML = `
     ${passed.length === 0 ? `
       <div class="glass-card no-hover" style="padding:3rem;text-align:center;">
-        <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
+        <div style="width:56px;height:56px;border-radius:50%;background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" stroke="#a78bfa" stroke-width="2"/><rect x="9" y="3" width="6" height="4" rx="1" stroke="#a78bfa" stroke-width="2"/></svg>
+        </div>
         <h3 class="h4" style="margin-bottom:0.75rem;">Тестов пока нет</h3>
         <p class="text-secondary" style="margin-bottom:1.5rem;">Пройдите первый тест, чтобы увидеть результаты</p>
-        <a href="#/tests" class="btn-primary">Перейти к тестам →</a>
+        <a href="#/tests" class="btn-primary">Перейти к тестам</a>
       </div>
     ` : `
       <div class="tests-history-grid">
         ${passed.map(t => renderHistoryCard(t, results[t.id])).join('')}
         <a href="#/tests" class="glass-card" style="display:flex;align-items:center;justify-content:center;gap:0.75rem;padding:1.5rem;text-decoration:none;min-height:140px;color:var(--text-muted);">
-          <span style="font-size:1.5rem;">+</span><span>Пройти новый тест</span>
+          <span style="font-size:1.5rem;font-weight:200;">+</span><span>Пройти новый тест</span>
         </a>
       </div>
     `}
@@ -128,7 +131,7 @@ async function renderTestsTab(content, user) {
         <div class="untaken-grid">
           ${notPassed.map(t => `
             <a href="#/test/${t.id}" class="untaken-card glass-card" style="text-decoration:none;">
-              <span style="font-size:1.5rem;">${t.icon}</span>
+              <div style="width:32px;height:32px;border-radius:8px;background:${t.color}22;border:1px solid ${t.color}44;flex-shrink:0;"></div>
               <span class="untaken-card-name">${t.name}</span>
             </a>`).join('')}
         </div>
@@ -137,24 +140,24 @@ async function renderTestsTab(content, user) {
 }
 
 function renderHistoryCard(test, data) {
-  const result  = data?.result || data;
-  const date    = data?.completedAt ? formatDateShort(data.completedAt) : '—';
-  const s       = getResultSummary(test.id, result);
+  const result = data?.result || data;
+  const date   = data?.completedAt ? formatDateShort(data.completedAt) : (data?.updatedAt?.toDate ? formatDateShort(data.updatedAt.toDate()) : '—');
+  const s      = getResultSummary(test.id, result);
   return `
     <div class="history-card glass-card">
       <div class="history-card-header">
         <div>
-          <span style="font-size:1.5rem;">${test.icon}</span>
-          <div class="history-card-name" style="margin-top:0.25rem;">${test.name}</div>
+          <div style="width:36px;height:36px;border-radius:10px;background:${test.color}22;border:1px solid ${test.color}44;"></div>
+          <div class="history-card-name" style="margin-top:0.4rem;">${test.name}</div>
         </div>
-        <span class="badge badge-green">✓ Пройден</span>
+        <span class="badge badge-green">Пройден</span>
       </div>
       <div class="history-card-result">${s.title}</div>
       <div class="history-card-subtitle">${s.sub}</div>
       <div class="history-card-date">${date}</div>
       <div class="history-card-actions">
         <a href="#/result/${test.id}" class="btn-primary btn-sm">Смотреть</a>
-        <a href="#/test/${test.id}"   class="btn-ghost btn-sm">Пройти →</a>
+        <a href="#/test/${test.id}"   class="btn-ghost btn-sm">Пройти снова</a>
       </div>
     </div>`;
 }
@@ -162,8 +165,8 @@ function renderHistoryCard(test, data) {
 function getResultSummary(testId, r) {
   switch(testId) {
     case 'mbti':     return { title: r?.type||'—',           sub: r?.typeName||'' };
-    case 'bigfive':  return { title: 'OCEAN',                 sub: `O:${r?.percentages?.O}% E:${r?.percentages?.E}% N:${r?.percentages?.N}%` };
-    case 'eysenck':  return { title: r?.temperament||'—',    sub: `E=${r?.E} N=${r?.N}` };
+    case 'bigfive':  return { title: 'OCEAN',                 sub: `O:${r?.percentages?.O||0}% E:${r?.percentages?.E||0}% N:${r?.percentages?.N||0}%` };
+    case 'eysenck':  return { title: r?.temperament||'—',    sub: `E=${r?.E||0} N=${r?.N||0}` };
     case 'pdo':      return { title: r?.leading||'—',         sub: r?.secondary||'' };
     case 'leonhard': { const t=Object.entries(r?.scores||{}).sort((a,b)=>b[1]-a[1])[0]; return { title: t?.[0]||'—', sub:`${t?.[1]||0}/24` }; }
     case 'cattell':  return { title: '16PF', sub: 'Профиль из 16 факторов' };
@@ -172,11 +175,13 @@ function getResultSummary(testId, r) {
   }
 }
 
+/* ── Вкладка: Сводный профиль ────────────────────────────────── */
 async function renderProfileTab(content, user) {
   content.innerHTML = `<div id="combinedProfileTab"></div>`;
   await renderCombinedProfile(user.uid);
 }
 
+/* ── Вкладка: AI-портрет ─────────────────────────────────────── */
 function renderAITab(content) {
   const allResults = {};
   ALL_TESTS.forEach(t => {
@@ -215,6 +220,7 @@ function renderAITab(content) {
   }
 }
 
+/* ── Вкладка: Настройки ──────────────────────────────────────── */
 function renderSettingsTab(content, user) {
   content.innerHTML = `
     <div class="settings-section">
@@ -232,6 +238,7 @@ function renderSettingsTab(content, user) {
           <span style="color:var(--text-muted);">${user.email}</span>
         </div>
       </div>
+
       <div class="settings-card glass-card no-hover">
         <div class="settings-card-title">Безопасность</div>
         <div class="settings-row" style="flex-direction:column;align-items:flex-start;gap:0.75rem;">
@@ -241,15 +248,16 @@ function renderSettingsTab(content, user) {
           <button class="btn-primary btn-sm" onclick="window.__changePwd()">Изменить пароль</button>
         </div>
       </div>
+
       <div class="settings-card glass-card no-hover">
         <div class="settings-card-title">Данные</div>
         <div class="settings-row">
           <span class="settings-row-label">Экспорт всех результатов в JSON</span>
-          <button class="btn-ghost btn-sm" onclick="window.__exportData()">📥 Скачать JSON</button>
+          <button class="btn-ghost btn-sm" onclick="window.__exportData()">Скачать JSON</button>
         </div>
         <div class="settings-row">
           <span class="settings-row-label">Удалить все результаты тестов</span>
-          <button class="btn-danger btn-sm" onclick="window.__deleteAll()">🗑 Удалить всё</button>
+          <button class="btn-danger btn-sm" onclick="window.__deleteAll()">Удалить всё</button>
         </div>
       </div>
     </div>`;
@@ -282,12 +290,12 @@ function renderSettingsTab(content, user) {
       const url  = URL.createObjectURL(blob);
       const a    = Object.assign(document.createElement('a'), { href:url, download:`psychotest_${user.uid.slice(0,8)}.json` });
       a.click(); URL.revokeObjectURL(url);
-      showToast('JSON скачан! 📥', 'success');
+      showToast('JSON скачан', 'success');
     } catch { showToast('Ошибка экспорта', 'error'); }
   };
 
   window.__deleteAll = () => {
-    showConfirm('Вы уверены? Все результаты будут удалены без восстановления.', async () => {
+    showConfirm('Все результаты будут удалены без восстановления. Продолжить?', async () => {
       await deleteAllResults(user.uid);
       ALL_TESTS.forEach(t => localStorage.removeItem(`result_${t.id}`));
       showToast('Все результаты удалены', 'success');
@@ -296,15 +304,18 @@ function renderSettingsTab(content, user) {
   };
 }
 
+/* ── Загрузка статистики в шапку ─────────────────────────────── */
 async function loadStats(uid) {
   try {
     const results = await loadAllResults(uid);
     const count   = Object.keys(results).length;
-    const dates   = Object.values(results).map(r => r.completedAt).filter(Boolean).sort();
+    const dates   = Object.values(results)
+      .map(r => r.completedAt || (r.updatedAt?.toDate ? r.updatedAt.toDate().toISOString() : null))
+      .filter(Boolean).sort();
     const last    = dates.length ? formatDateShort(dates[dates.length-1]) : null;
     const statsEl = document.querySelector('.cabinet-stats');
     if (statsEl) statsEl.innerHTML = `
-      <span class="cabinet-stat"><span class="cabinet-stat-icon">📊</span> ${count} тестов</span>
-      ${last ? `<span class="cabinet-stat"><span class="cabinet-stat-icon">🕐</span> Последний: ${last}</span>` : ''}`;
+      <span class="cabinet-stat">${count} тестов</span>
+      ${last ? `<span class="cabinet-stat">Последний: ${last}</span>` : ''}`;
   } catch {}
 }

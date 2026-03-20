@@ -208,3 +208,70 @@ ul, ol { list-style: none; }
   min-height: calc(100vh - 72px);
   padding-top: 72px; /* высота навбара */
 }
+
+/* ── Мобильная адаптация: Hero без рисунка ───────────────────── */
+.hero-content-only {
+  max-width: 720px;
+}
+
+.mobile-break { display: none; }
+
+@media (max-width: 600px) {
+  .mobile-break { display: block; }
+}
+
+/* ── Гриды для секций ──────────────────────────────────────────── */
+.tests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  .tests-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-btns {
+    flex-direction: column;
+  }
+  .hero-stats {
+    gap: 1.25rem !important;
+  }
+}
+
+/* ── Логотип SVG ───────────────────────────────────────────────── */
+.logo-icon-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Убираем cursor: none на мобильных ─────────────────────────── */
+@media (pointer: coarse) {
+  body, button, a { cursor: auto !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}

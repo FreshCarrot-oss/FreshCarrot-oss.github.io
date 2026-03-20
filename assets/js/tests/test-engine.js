@@ -175,7 +175,7 @@ export class TestEngine {
         ${timeInfo}
         <div class="test-nav-right">
           ${isLast
-            ? `<button class="btn-primary glow" id="finishBtn" type="button">Завершить тест ✓</button>`
+            ? `<button class="btn-primary glow" id="finishBtn" type="button">Завершить тест </button>`
             : `<button class="btn-primary" id="nextBtn" type="button">Далее →</button>`
           }
         </div>

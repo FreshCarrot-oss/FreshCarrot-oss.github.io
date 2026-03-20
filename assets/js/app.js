@@ -204,7 +204,7 @@ function renderAboutStub() {
           </p>
         </div>
         <div style="text-align:center;margin-top:2.5rem;">
-          <a href="#/tests" class="btn-primary">Начать тестирование →</a>
+          <a href="#/tests" class="btn-primary">Начать тестирование</a>
         </div>
       </div>
     </div>

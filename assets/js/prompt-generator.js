@@ -160,7 +160,7 @@ export function renderPromptBlock(allResults) {
   return `
     <section class="glass-card prompt-section animate-on-scroll">
       <div class="prompt-header">
-        <span class="prompt-icon">🤖</span>
+        <span class="prompt-icon"></span>
         <div>
           <h3>Промпт для AI-анализа</h3>
           <p class="text-secondary">
@@ -212,14 +212,14 @@ export function renderPromptBlock(allResults) {
               id="copyPromptBtn"
               onclick="window.__handleCopyPrompt()"
             >
-              📋 Скопировать промпт
+               Скопировать промпт
             </button>
             <button class="btn-ghost" onclick="window.__handleBackToStep1()">
               ↩ Изменить запрос
             </button>
           </div>
           <p class="prompt-hint">
-            💡 Вставьте этот промпт в ChatGPT, Claude или другой AI в вашем аккаунте
+             Вставьте этот промпт в ChatGPT, Claude или другой AI в вашем аккаунте
           </p>
         </div>
       `}
@@ -272,13 +272,13 @@ export async function handleCopyPrompt() {
 
   const ok = await copyToClipboard(text);
   if (ok) {
-    showToast('Промпт скопирован в буфер обмена! 📋', 'success');
+    showToast('Промпт скопирован в буфер обмена! ', 'success');
 
     // Визуальная обратная связь кнопки
     const btn = document.getElementById('copyPromptBtn');
     if (btn) {
       const original = btn.innerHTML;
-      btn.innerHTML = '✅ Скопировано!';
+      btn.innerHTML = ' Скопировано!';
       btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
       setTimeout(() => {
         btn.innerHTML = original;

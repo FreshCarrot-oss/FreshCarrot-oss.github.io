@@ -3,7 +3,7 @@
 
 // ── Toast-уведомления ─────────────────────────────────────────
 const TOAST_ICONS = {
-  success: '✓',
+  success: '',
   error:   '✕',
   info:    'ℹ',
   warn:    '⚠'

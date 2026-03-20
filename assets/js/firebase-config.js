@@ -18,9 +18,9 @@ try {
   firebaseApp = firebase.initializeApp(firebaseConfig);
   db   = firebase.firestore();
   auth = firebase.auth();
-  console.log("✅ Firebase инициализирован");
+  console.log(" Firebase инициализирован");
 } catch (err) {
-  console.warn("⚠️ Firebase не настроен:", err.message);
+  console.warn(" Firebase не настроен:", err.message);
   // Режим без Firebase — только localStorage
 }
 

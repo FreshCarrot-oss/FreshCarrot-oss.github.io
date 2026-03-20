@@ -12,7 +12,7 @@ export function renderRegisterPage() {
     <div class="auth-page" style="position:relative;z-index:10;">
       <div class="auth-card glass-card no-hover" id="authCard" style="opacity:0;transform:scale(0.93);">
         <div style="text-align:center;margin-bottom:2rem;">
-          <div style="font-size:2.5rem;margin-bottom:0.5rem;">🧠</div>
+          <div style="font-size:2.5rem;margin-bottom:0.5rem;"></div>
           <h1 class="auth-title">Создать аккаунт</h1>
           <p class="auth-subtitle">Бесплатно и без ограничений</p>
         </div>

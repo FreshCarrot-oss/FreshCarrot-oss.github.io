@@ -72,7 +72,7 @@ export async function renderTestPage(testId) {
     app.innerHTML = `
       <div style="min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;">
         <div>
-          <div style="font-size:3rem;margin-bottom:1rem;">⚠️</div>
+          <div style="font-size:3rem;margin-bottom:1rem;"></div>
           <h2 class="h3" style="margin-bottom:0.75rem;">Ошибка загрузки</h2>
           <p class="text-secondary" style="margin-bottom:1.5rem;">${err.message}</p>
           <a href="#/tests" class="btn-primary">← Все тесты</a>

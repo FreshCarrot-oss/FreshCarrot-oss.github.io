@@ -76,7 +76,7 @@ export function findCorrelations(allResults) {
   if (allResults.mbti && allResults.eysenck) {
     const mbtiI = allResults.mbti.percentages?.EI > 50;
     const eyI   = allResults.eysenck.E < 12;
-    if (mbtiI && eyI) corr.push({ text:'🧩 Интроверт — подтверждено MBTI и Айзенком', strength:'strong' });
+    if (mbtiI && eyI) corr.push({ text:' Интроверт — подтверждено MBTI и Айзенком', strength:'strong' });
   }
 
   // Big Five высокий N + Айзенк высокий N
@@ -119,7 +119,7 @@ export function generateSummaryText(allResults) {
   const extroversion = meta['Экстраверсия'];
   if (extroversion !== undefined) {
     if (extroversion < 40) {
-      lines.push('🧩 Вы выраженный интроверт — восстанавливаетесь в одиночестве, предпочитаете глубокие связи широкому кругу общения.');
+      lines.push(' Вы выраженный интроверт — восстанавливаетесь в одиночестве, предпочитаете глубокие связи широкому кругу общения.');
     } else if (extroversion > 65) {
       lines.push('☀️ Вы выраженный экстраверт — черпаете энергию из общения, легко заводите новые знакомства.');
     } else {
@@ -182,7 +182,7 @@ export async function renderCombinedProfile(uid) {
   if (count === 0) {
     container.innerHTML = `
       <div class="glass-card no-hover" style="padding:3rem;text-align:center;">
-        <div style="font-size:3rem;margin-bottom:1rem;">📊</div>
+        <div style="font-size:3rem;margin-bottom:1rem;"></div>
         <h3 class="h4" style="margin-bottom:0.75rem;">Профиль не построен</h3>
         <p class="text-secondary" style="margin-bottom:1.5rem;">Пройдите хотя бы один тест, чтобы увидеть сводный профиль</p>
         <a href="#/tests" class="btn-primary">Перейти к тестам →</a>

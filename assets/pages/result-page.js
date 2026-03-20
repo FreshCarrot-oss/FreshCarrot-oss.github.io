@@ -44,7 +44,7 @@ export async function renderResultPageRoute(testId) {
       <div class="results-page" style="position:relative;z-index:10;">
         <div class="results-container" style="align-items:center;text-align:center;padding-top:4rem;">
           <div class="glass-card no-hover" style="padding:3rem;max-width:480px;margin-inline:auto;">
-            <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
+            <div style="font-size:3rem;margin-bottom:1rem;"></div>
             <h2 class="h3" style="margin-bottom:0.75rem;">Результат не найден</h2>
             <p class="text-secondary" style="margin-bottom:2rem;">
               Вы ещё не проходили тест «${TEST_NAMES[testId] || testId}» или результат устарел.
@@ -75,7 +75,7 @@ export function renderSharedPage(testId, query) {
       <div class="results-page" style="position:relative;z-index:10;">
         <div class="results-container" style="text-align:center;padding-top:4rem;">
           <div class="glass-card no-hover" style="padding:3rem;max-width:480px;margin-inline:auto;">
-            <div style="font-size:3rem;margin-bottom:1rem;">🔗</div>
+            <div style="font-size:3rem;margin-bottom:1rem;"></div>
             <h2 class="h3" style="margin-bottom:0.75rem;">Ссылка недействительна</h2>
             <p class="text-secondary" style="margin-bottom:2rem;">
               Данные результата повреждены или ссылка устарела.

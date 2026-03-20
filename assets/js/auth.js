@@ -26,7 +26,7 @@ export async function registerWithEmail(name, email, password) {
     const cred = await auth.createUserWithEmailAndPassword(email, password);
     // Устанавливаем displayName
     await cred.user.updateProfile({ displayName: name });
-    showToast('Аккаунт создан! Добро пожаловать 🎉', 'success');
+    showToast('Аккаунт создан! Добро пожаловать ', 'success');
     return cred.user;
   } catch (err) {
     const msg = authErrorMessage(err.code);
@@ -53,7 +53,7 @@ export async function loginWithGoogle() {
   try {
     const provider = new firebase.auth.GoogleAuthProvider();
     const cred = await auth.signInWithPopup(provider);
-    showToast(`Привет, ${cred.user.displayName || 'друг'}! 🎉`, 'success');
+    showToast(`Привет, ${cred.user.displayName || 'друг'}! `, 'success');
     return cred.user;
   } catch (err) {
     if (err.code === 'auth/popup-closed-by-user') return null;
